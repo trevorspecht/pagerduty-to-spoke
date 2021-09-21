@@ -1,0 +1,17 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    SPOKE_SECRET_PREFIX: general/IT/xxxxxx
+    ALERTS_IT_SLACK_URL: general/IT/xxxx
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo "//registry.npmjs.org/:_authToken=$NPMAccessToken" > ./.npmrc
+      - npm ci
+  build:
+    commands:
+      - npm test
